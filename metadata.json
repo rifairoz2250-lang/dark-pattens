@@ -1,0 +1,6 @@
+{
+  "name": "BetYouPay",
+  "description": "Consumer cybersecurity tool that identifies potentially deceptive web design, dark patterns, and hidden payment risks before you pay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
