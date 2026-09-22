@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'node:test';
+import assert from 'node:assert/strict';
 
 // Transparent scoring formula logic as defined in your specifications
 function calculateRiskScore(issues: Array<{ severity: 'Low' | 'Medium' | 'High' }>): number {
@@ -22,7 +23,7 @@ describe('BetYouPay Risk Engine & Safety Tests', () => {
       { severity: 'High' as const },
     ];
     // 10 + 20 + 30 = 60
-    expect(calculateRiskScore(issues)).toBe(60);
+    assert.strictEqual(calculateRiskScore(issues), 60);
   });
 
   it('strictly caps the risk score at 100 points', () => {
@@ -33,14 +34,14 @@ describe('BetYouPay Risk Engine & Safety Tests', () => {
       { severity: 'High' as const },
     ];
     // 30 * 4 = 120 -> capped at 100
-    expect(calculateRiskScore(manyIssues)).toBe(100);
+    assert.strictEqual(calculateRiskScore(manyIssues), 100);
   });
 
   it('rejects defamatory vocabulary according to safety guidelines', () => {
     const sampleSafeSummary = "Potential dark pattern detected with a possible hidden recurring fee.";
     const sampleDefamatorySummary = "This website is an outright scam and illegal fraud.";
 
-    expect(validateWording(sampleSafeSummary)).toBe(true);
-    expect(validateWording(sampleDefamatorySummary)).toBe(false);
+    assert.strictEqual(validateWording(sampleSafeSummary), true);
+    assert.strictEqual(validateWording(sampleDefamatorySummary), false);
   });
 });
